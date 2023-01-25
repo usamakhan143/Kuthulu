@@ -6,7 +6,6 @@ import {
 } from 'react-native';
 import React from 'react';
 import {scale, moderateScale, verticalScale} from 'react-native-size-matters';
-import {Colors} from '../../constant/Colors';
 
 import {Fonts} from '../../constant/Fonts';
 
@@ -54,7 +53,7 @@ export default CustomButton;
 const styles = StyleSheet.create({
   buttonContainer: (
     width,
-    backgroundColor = Colors.primary,
+    backgroundColor = 'purple',
     marginTop,
     borderWidth,
     paddingVertical,
@@ -71,7 +70,7 @@ const styles = StyleSheet.create({
     marginTop: marginTop ? marginTop : verticalScale(10),
     borderWidth: borderColor ? 1 : 0,
     marginRight: marginRight ? marginRight : 0,
-    borderColor: borderColor ? borderColor : Colors.background,
+    borderColor: borderColor ? borderColor : 'yellow',
     marginBottom: marginBottom ? marginBottom : 0,
     opacity: loading ? 0.6 : 1,
   }),

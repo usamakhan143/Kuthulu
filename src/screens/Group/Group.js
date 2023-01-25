@@ -1,19 +1,19 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {useSelector} from 'react-redux';
 import {moderateScale} from 'react-native-size-matters';
+import {useSelector} from 'react-redux';
 
-const MessageList = () => {
+const Group = () => {
   const color = useSelector(state => state.color.colorTheme);
 
   return (
     <View style={styles.container(color)}>
-      <Text style={styles.text(color)}>MessageList</Text>
+      <Text style={styles.text(color)}>Group</Text>
     </View>
   );
 };
 
-export default MessageList;
+export default Group;
 
 const styles = StyleSheet.create({
   container: color => ({

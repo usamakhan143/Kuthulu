@@ -3,17 +3,17 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import {moderateScale} from 'react-native-size-matters';
 
-const MessageList = () => {
+const Wallet = () => {
   const color = useSelector(state => state.color.colorTheme);
 
   return (
     <View style={styles.container(color)}>
-      <Text style={styles.text(color)}>MessageList</Text>
+      <Text style={styles.text(color)}>Wallet</Text>
     </View>
   );
 };
 
-export default MessageList;
+export default Wallet;
 
 const styles = StyleSheet.create({
   container: color => ({

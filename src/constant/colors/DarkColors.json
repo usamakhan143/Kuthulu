@@ -1,4 +1,6 @@
 {
-  "background": "#23231E",
-  "text": "#B1B1B1"
+  "background": "#212529",
+  "text": "#fff",
+  "primary": "#6D22a6",
+  "bottomTabBackground": "#0d0f10"
 }

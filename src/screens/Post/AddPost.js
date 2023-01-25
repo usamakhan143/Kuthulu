@@ -3,17 +3,17 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import {moderateScale} from 'react-native-size-matters';
 
-const MessageList = () => {
+const AddPost = () => {
   const color = useSelector(state => state.color.colorTheme);
 
   return (
     <View style={styles.container(color)}>
-      <Text style={styles.text(color)}>MessageList</Text>
+      <Text style={styles.text(color)}>AddPost</Text>
     </View>
   );
 };
 
-export default MessageList;
+export default AddPost;
 
 const styles = StyleSheet.create({
   container: color => ({
