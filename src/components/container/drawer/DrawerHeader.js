@@ -4,7 +4,7 @@ import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import BadgeImage from '../../commons/BadgeImage';
 import IconBadge from '../../commons/IconBadge';
 import {useSelector} from 'react-redux';
-
+import {Fonts} from '../../../constant/Fonts';
 const DrawerHeader = () => {
   const color = useSelector(state => state.color.colorTheme);
 
@@ -25,10 +25,26 @@ const DrawerHeader = () => {
       </View>
       <View style={styles.mainContainer}>
         <Text style={styles.nameText(color)}>Adam</Text>
-        <Text style={styles.nameText(color)}>@0x123.45D</Text>
-        <View style={styles.walletContainer}>
-          <Text style={styles.nameText(color)}>Matic:1.35</Text>
-          <Text style={styles.nameText(color)}> Doom 345.7</Text>
+        <Text style={styles.userIdText(color)}>@0x123.45D</Text>
+        <View style={styles.rowContainer}>
+          <Text style={styles.followersText(color)}>
+            154 <Text style={{color: color.textLight}}>Follower </Text>
+          </Text>
+          <Text style={styles.followersText(color)}>
+            34 <Text style={{color: color.textLight}}>Following</Text>
+          </Text>
+        </View>
+        <View style={[styles.rowContainer, {marginLeft: scale(-5)}]}>
+          <Image
+            source={require('../../../assets/images/matic.png')}
+            style={styles.iconImage}
+          />
+          <Text style={styles.userIdText(color)}>:1.35</Text>
+          <Image
+            source={require('../../../assets/images/doom.png')}
+            style={styles.doomIconImage}
+          />
+          <Text style={styles.userIdText(color)}>345.7</Text>
         </View>
       </View>
     </View>
@@ -40,12 +56,12 @@ export default DrawerHeader;
 const styles = StyleSheet.create({
   container: {
     marginTop: verticalScale(15),
+    // paddingHorizontal: scale(20),
   },
   headerContainer: {
     flexDirection: 'row',
 
     justifyContent: 'space-between',
-    paddingHorizontal: scale(20),
   },
   image: {
     height: verticalScale(50),
@@ -58,13 +74,37 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   mainContainer: {
-    paddingHorizontal: scale(20),
+    marginTop: verticalScale(10),
   },
   nameText: color => ({
     fontSize: moderateScale(20),
     color: color.text,
+    fontFamily: Fonts.robotoMedium,
   }),
-  walletContainer: {
+  userIdText: color => ({
+    fontSize: moderateScale(16),
+    color: color.textLight,
+    fontFamily: Fonts.robotoMedium,
+  }),
+
+  rowContainer: {
     flexDirection: 'row',
+    marginLeft: scale(-2),
+    marginTop: verticalScale(5),
+    alignItems: 'center',
+  },
+  followersText: color => ({
+    fontSize: moderateScale(16),
+    fontFamily: Fonts.robotoMedium,
+    color: color.text,
+  }),
+  iconImage: {
+    width: verticalScale(30),
+    aspectRatio: 1 / 1,
+  },
+  doomIconImage: {
+    marginLeft: scale(10),
+    width: verticalScale(30),
+    aspectRatio: 2.1 / 1,
   },
 });

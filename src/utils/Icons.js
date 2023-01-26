@@ -11,7 +11,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Octicons from 'react-native-vector-icons/Octicons';
-import RNIMigration from 'react-native-vector-icons/RNIMigration';
+
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import Zocial from 'react-native-vector-icons/Zocial';
 
@@ -29,7 +29,7 @@ const icons = {
   MaterialCommunityIcons,
   MaterialIcons,
   Octicons,
-  RNIMigration,
+
   SimpleLineIcons,
   Zocial,
 };

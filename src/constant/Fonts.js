@@ -1,11 +1,9 @@
 export const Fonts = {
-  montserratBlack: 'Montserrat-Black',
-  montserratBold: 'Montserrat-Bold',
-  montserratExtraBold: 'Montserrat-ExtraBold',
-  montserratExtraLight: 'Montserrat-ExtraLight',
-  montserratLight: 'Montserrat-Light',
-  montserratMedium: 'Montserrat-Medium',
-  montserratRegular: 'Montserrat-Regular',
-  montserratSemiBold: 'Montserrat-SemiBold',
-  montserratThin: 'Montserrat-Thin',
+  robotoBlack: 'Roboto-Black',
+  robotoBold: 'Roboto-Bold',
+  robotoLight: 'Roboto-Light',
+  robotoMedium: 'Roboto-Medium',
+  robotoRegular: 'Roboto-Regular',
+  robotoSemiBold: 'Roboto-SemiBold',
+  robotoThin: 'Roboto-Thin',
 };
