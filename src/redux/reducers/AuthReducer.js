@@ -3,17 +3,19 @@
 // import {lightColors} from '../../constant/Colors';
 
 export const COLOR_THEME = 'COLOR_THEME';
+export const SHOW_PIN = 'SHOW_PIN';
 
 const initial_state = {
+  showPin: true,
   // colorTheme: lightColors,
 };
 
 const AuthReducer = (state = initial_state, action) => {
   switch (action.type) {
-    case COLOR_THEME:
+    case SHOW_PIN:
       return {
         ...state,
-        colorTheme: action.payload,
+        showPin: action.payload,
       };
 
     default: {

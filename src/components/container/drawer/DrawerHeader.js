@@ -55,7 +55,8 @@ export default DrawerHeader;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: verticalScale(15),
+    marginTop: verticalScale(14),
+
     // paddingHorizontal: scale(20),
   },
   headerContainer: {

@@ -14,6 +14,7 @@ import Icons from '../components/commons/Icons';
 import DrawerContentContainer from '../components/container/drawer/DrawerContentContainer';
 import {FlatList} from 'react-native-gesture-handler';
 import {CrytoCurrency} from '../constant/DummyData';
+import DrawerGroupContainer from '../components/container/drawer/DrawerGroupContainer';
 
 export default function CustomDrawer({navigation, activeTab}) {
   const darkMode = useSelector(state => state.color.darkMode);
@@ -45,20 +46,20 @@ export default function CustomDrawer({navigation, activeTab}) {
             styles.drawerContanerStyle(color),
             {paddingBottom: verticalScale(7)},
           ]}
-          iconSize={moderateScale(20)}
+          iconSize={moderateScale(16)}
           onPress={() => setShowdropItem(prev => !prev)}
         />
         {showdropItem &&
           CrytoCurrency.map((item, index) => {
             return (
-              <DrawerContentContainer
+              <DrawerGroupContainer
                 key={index}
-                iconType="FontAwesome"
-                iconName="user"
+                imageUrl={item.image}
                 title={item.name}
                 containerStyle={{
                   paddingBottom: index == 3 ? verticalScale(7) : 0,
                   borderBottomWidth: index == 3 ? 0.5 : 0,
+
                   borderColor: color.textLight,
                 }}
               />
@@ -76,19 +77,14 @@ export default function CustomDrawer({navigation, activeTab}) {
           title="Settings"
           iconSize={moderateScale(20)}
         />
-        <View style={{marginTop: verticalScale(15)}}>
-          <Switch
-            trackColor={{
-              false: darkMode ? '#767577' : 'purple',
-              true: darkMode ? '#81b0ff' : 'pink',
-            }}
-            thumbColor={darkMode ? '#f5dd4b' : '#f4f3f4'}
-            ios_backgroundColor="#3e3e3e"
-            onValueChange={toggleSwitch}
-            value={darkMode}
-          />
-        </View>
       </DrawerContentScrollView>
+      <View style={styles.darkModeIcon}>
+        <Icons
+          name={darkMode ? 'moon' : 'sun'}
+          type={darkMode ? 'Feather' : 'Feather'}
+          onPress={toggleSwitch}
+        />
+      </View>
     </View>
   );
 }
@@ -103,4 +99,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: moderateScale(0.5),
     borderColor: color.textLight,
   }),
+  darkModeIcon: {
+    position: 'absolute',
+    bottom: 40,
+    left: 20,
+  },
 });

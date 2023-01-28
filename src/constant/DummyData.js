@@ -1,8 +1,28 @@
 export const CrytoCurrency = [
-  {id: 1, name: 'Cryto Sucks'},
-  {id: 2, name: 'Mint of Destiny'},
-  {id: 4, name: 'Random Group'},
-  {id: 5, name: 'Hello There'},
+  {
+    id: 1,
+    name: 'Cryto Sucks',
+    image:
+      'https://zipmex.com/static/d1af016df3c4adadee8d863e54e82331/Twitter-NFT-profile.jpg',
+  },
+  {
+    id: 2,
+    name: 'Mint of Destiny',
+    image:
+      'https://zipmex.com/static/d1af016df3c4adadee8d863e54e82331/Twitter-NFT-profile.jpg',
+  },
+  {
+    id: 4,
+    name: 'Random Group',
+    image:
+      'https://zipmex.com/static/d1af016df3c4adadee8d863e54e82331/Twitter-NFT-profile.jpg',
+  },
+  {
+    id: 5,
+    name: 'Hello There',
+    image:
+      'https://zipmex.com/static/d1af016df3c4adadee8d863e54e82331/Twitter-NFT-profile.jpg',
+  },
 ];
 export const keyboardLayout = [
   {

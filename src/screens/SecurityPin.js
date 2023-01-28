@@ -9,9 +9,12 @@ import KeyboadButton from '../components/container/keyboardButton/KeyboadButton'
 import {useRef} from 'react';
 import {useState} from 'react';
 import {useEffect} from 'react';
+import {useDispatch} from 'react-redux';
+import {SHOW_PIN} from '../redux/reducers/AuthReducer';
 const SecurityPin = () => {
   const [numberInput, setnumberInput] = useState('');
-
+  const [wronginput, setWrongInput] = useState(false);
+  const dispatch = useDispatch();
   const buttonPressHandler = buttonTab => {
     if (buttonTab == 'fp') {
       alert('we are working on it');
@@ -28,14 +31,19 @@ const SecurityPin = () => {
     if (numberInput == '') {
       setnumberInput(numberAsString);
     } else {
-      if (numberInput.length == 4) {
-        console.log('runFunction');
-
-        if (numberInput == '0000') {
-          alert('correct');
-        } else {
-          alert('wong');
-        }
+      if (numberInput.length == 3) {
+        setnumberInput(prev => prev + numberAsString);
+        setTimeout(() => {
+          if (numberInput + numberAsString == '0000') {
+            dispatch({type: SHOW_PIN, payload: false});
+          } else {
+            setnumberInput('');
+            setWrongInput(true);
+            setTimeout(() => {
+              setWrongInput(false);
+            }, 1000);
+          }
+        }, 500);
       } else {
         setnumberInput(prev => prev + numberAsString);
       }
@@ -65,6 +73,9 @@ const SecurityPin = () => {
           <Text style={styles.pinInput}>{numberInput.length > 3 && '*'}</Text>
         </View>
       </View>
+      {wronginput && <Text style={styles.wronginput}>Wrong Input</Text>}
+      <Text style={styles.wronginput}>0000 temp input</Text>
+
       <Text style={styles.forgotText}>Forgot Pin?</Text>
 
       <FlatList
@@ -125,6 +136,11 @@ const styles = StyleSheet.create({
     height: verticalScale(35),
     fontFamily: Fonts.robotoBlack,
     marginHorizontal: scale(5),
+  },
+  wronginput: {
+    fontSize: moderateScale(20),
+    fontFamily: Fonts.robotoSemiBold,
+    marginTop: verticalScale(10),
   },
   forgotText: {
     fontSize: moderateScale(20),

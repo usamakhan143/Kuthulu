@@ -9,7 +9,7 @@ const DrawerContentContainer = ({
   iconType,
   iconName,
   title,
-  iconSize = moderateScale(30),
+  iconSize = moderateScale(24),
   showDropDown,
   containerStyle,
   onPress,
@@ -20,7 +20,9 @@ const DrawerContentContainer = ({
     <TouchableOpacity
       style={[styles.container, containerStyle]}
       onPress={onPress}>
-      <Icons type={iconType} name={iconName} size={iconSize} />
+      <View>
+        <Icons type={iconType} name={iconName} size={iconSize} />
+      </View>
       <View style={styles.rightContainer}>
         <Text style={styles.titleText(color)}>{title}</Text>
         {showDropDown && <Icons type="Feather" name="chevron-down" />}
@@ -35,7 +37,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: verticalScale(10),
+    marginTop: verticalScale(20),
   },
   rightContainer: {
     flexDirection: 'row',
@@ -45,9 +47,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   titleText: color => ({
-    fontFamily: Fonts.robotoMedium,
+    fontFamily: Fonts.robotoRegular,
     color: color.text,
-    fontSize: moderateScale(18),
-    paddingLeft: scale(5),
+    fontSize: moderateScale(16),
+    paddingLeft: scale(18),
   }),
 });
