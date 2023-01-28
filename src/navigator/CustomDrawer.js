@@ -2,64 +2,89 @@ import {StyleSheet, Text, View, Image} from 'react-native';
 import React, {useState} from 'react';
 import {DrawerContentScrollView} from '@react-navigation/drawer';
 import {Drawer, Switch} from 'react-native-paper';
-import {textStyles} from '../constant/TextStyle';
+
 import CustomButton from '../components/buttons/CustomButton';
-import {scale, verticalScale} from 'react-native-size-matters';
+import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {switchTheme} from '../redux/actions/ThemeActions';
 import {IS_SIGNIN} from '../redux/reducers/AuthReducer';
+import DrawerHeader from '../components/container/drawer/DrawerHeader';
+import Icons from '../components/commons/Icons';
+import DrawerContentContainer from '../components/container/drawer/DrawerContentContainer';
+import {FlatList} from 'react-native-gesture-handler';
+import {CrytoCurrency} from '../constant/DummyData';
+import DrawerGroupContainer from '../components/container/drawer/DrawerGroupContainer';
 
 export default function CustomDrawer({navigation, activeTab}) {
   const darkMode = useSelector(state => state.color.darkMode);
   const dispatch = useDispatch();
   const toggleSwitch = () => dispatch(switchTheme(darkMode));
   const color = useSelector(state => state.color.colorTheme);
-
+  const [showdropItem, setShowdropItem] = useState(false);
   return (
-    <View style={{flex: 1, backgroundColor: color.background}}>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: color.background,
+        paddingHorizontal: scale(15),
+      }}>
       <DrawerContentScrollView>
-        <View>
-          <View style={styles.userinfo}>
-            <Image
-              source={{
-                uri: 'https://t3.ftcdn.net/jpg/03/22/54/70/360_F_322547046_NkZWtsH6HdNY0XDeEqAPlJH3DhgjgPpt.jpg',
-              }}
-              style={{
-                width: 80,
+        <DrawerHeader />
 
-                borderRadius: 100,
-                aspectRatio: 1 / 1,
-              }}
-            />
-            <Text
-              style={[textStyles.title(color), {marginTop: verticalScale(8)}]}>
-              Developer
-            </Text>
-          </View>
-          <View style={{marginTop: verticalScale(15)}}>
-            <Switch
-              trackColor={{
-                false: darkMode ? '#767577' : 'purple',
-                true: darkMode ? '#81b0ff' : 'pink',
-              }}
-              thumbColor={darkMode ? '#f5dd4b' : '#f4f3f4'}
-              ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleSwitch}
-              value={darkMode}
-            />
-          </View>
-        </View>
-      </DrawerContentScrollView>
-      <Drawer.Section style={styles.drawerBottom(color)}>
-        <CustomButton
-          width={245}
-          title={'Logout'}
-          paddingVertical={8}
-          marginBottom={10}
-          onPress={() => dispatch({type: IS_SIGNIN, payload: false})}
+        <DrawerContentContainer
+          iconType="FontAwesome"
+          iconName="user"
+          title="Profile"
         />
-      </Drawer.Section>
+        <DrawerContentContainer
+          iconType="FontAwesome"
+          iconName="users"
+          title="Group MemberShips "
+          showDropDown={true}
+          containerStyle={[
+            styles.drawerContanerStyle(color),
+            {paddingBottom: verticalScale(7)},
+          ]}
+          iconSize={moderateScale(16)}
+          onPress={() => setShowdropItem(prev => !prev)}
+        />
+        {showdropItem &&
+          CrytoCurrency.map((item, index) => {
+            return (
+              <DrawerGroupContainer
+                key={index}
+                imageUrl={item.image}
+                title={item.name}
+                containerStyle={{
+                  paddingBottom: index == 3 ? verticalScale(7) : 0,
+                  borderBottomWidth: index == 3 ? 0.5 : 0,
+
+                  borderColor: color.textLight,
+                }}
+              />
+            );
+          })}
+        <DrawerContentContainer
+          iconType="Ionicons"
+          iconName="create"
+          title="Mint Groups"
+          iconSize={moderateScale(20)}
+        />
+        <DrawerContentContainer
+          iconType="Ionicons"
+          iconName="settings"
+          title="Settings"
+          iconSize={moderateScale(20)}
+        />
+      </DrawerContentScrollView>
+      <View style={styles.darkModeIcon}>
+        <Icons
+          name={darkMode ? 'moon' : 'sun'}
+          type={darkMode ? 'Feather' : 'Feather'}
+          onPress={toggleSwitch}
+        />
+      </View>
     </View>
   );
 }
@@ -70,22 +95,13 @@ const styles = StyleSheet.create({
 
     marginBottom: 12,
   }),
-  userinfo: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: verticalScale(12),
-  },
-  draweSection: {
-    flexDirection: 'row-reverse',
-    // paddingLeft: scale(25),
-    marginTop: verticalScale(15),
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    borderWidth: 0.5,
-    paddingVertical: verticalScale(3),
-  },
-  draweimgae: {
-    width: scale(30),
-    height: verticalScale(35),
+  drawerContanerStyle: color => ({
+    borderBottomWidth: moderateScale(0.5),
+    borderColor: color.textLight,
+  }),
+  darkModeIcon: {
+    position: 'absolute',
+    bottom: 40,
+    left: 20,
   },
 });
